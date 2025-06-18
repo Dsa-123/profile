@@ -285,15 +285,6 @@ strong {
     font-size: 16px;
   }
   
-  .card:nth-child(2)::before,
-  .card:nth-child(2)::after,
-  .card:nth-child(3)::before,
-  .card:nth-child(3)::after,
-  .contact-card::before,
-  .contact-card::after {
-    display: none;
-  }
-  
   .icon {
     width: 18px;
   }
