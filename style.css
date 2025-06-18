@@ -1,48 +1,4 @@
-@media (max-width: 768px) {
-  .card-container {
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .card {
-    flex: 1 1 auto;
-    width: 100%;
-    max-width: 100%;
-    margin-bottom: 20px;
-  }
-  
-  .profile-card {
-    flex: 1 1 auto;
-    width: 100%;
-  }
-  
-  body {
-    padding: 10px;
-  }
-  
-  .card-title {
-    font-size: 20px;
-  }
-  
-  p {
-    font-size: 16px;
-  }
-  
-  .pfp-container::before,
-  .pfp-container::after,
-  .card:nth-child(2)::before,
-  .card:nth-child(2)::after,
-  .card:nth-child(3)::before,
-  .card:nth-child(3)::after,
-  .contact-card::before,
-  .contact-card::after {
-    display: none;
-  }
-  
-  .icon {
-    width: 18px;
-  }
-}
+
 
 
 /*  Particle System */
@@ -296,4 +252,51 @@ strong {
   transform: translateY(-50%);
   width: 20px;
   filter: invert(1) brightness(0.9);
+}
+
+
+@media (max-width: 768px) {
+  .card-container {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .card {
+    flex: 1 1 auto;
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 20px;
+  }
+  
+  .profile-card {
+    flex: 1 1 auto;
+    width: 100%;
+  }
+  
+  body {
+    padding: 10px;
+  }
+  
+  .card-title {
+    font-size: 20px;
+  }
+  
+  p {
+    font-size: 16px;
+  }
+  
+  .pfp-container::before,
+  .pfp-container::after,
+  .card:nth-child(2)::before,
+  .card:nth-child(2)::after,
+  .card:nth-child(3)::before,
+  .card:nth-child(3)::after,
+  .contact-card::before,
+  .contact-card::after {
+    display: none;
+  }
+  
+  .icon {
+    width: 18px;
+  }
 }
