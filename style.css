@@ -1,0 +1,252 @@
+/*  Particle System */
+@keyframes float {
+  0%, 100% { transform: translate(0, 0) scale(1.5); opacity: 0.6; }
+  50% { transform: translate(10px, -15px) scale(1.5); opacity: 0.9; }
+}
+
+@keyframes float-up {
+  0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+  20%, 80% { opacity: 1; }
+  100% { transform: translateY(-80px) rotate(360deg); opacity: 0; }
+}
+
+/* Smoke Particles */
+.pfp-container {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  margin: 0 auto 20px;
+}
+
+.pfp {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid #4CAF50;
+  position: relative;
+  z-index: 2;
+}
+
+.pfp-container::before,
+.pfp-container::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(0, 0, 80, 0.4);
+  filter: blur(5px);
+  z-index: 1;
+  animation: float 3s infinite ease-in-out;
+}
+
+
+.pfp-container::before {
+  width: 30px;
+  height: 30px;
+  top: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.pfp-container::before {
+  width: 50px;
+  height: 50px;
+  top: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.pfp-container::after {
+  width: 40px;
+  height: 40px;
+  bottom: -20px;
+  right: 10px;
+  animation-delay: 1s;
+}
+
+/* Code Tags */
+.card:nth-child(2) {
+  position: relative;
+  overflow: visible;
+}
+
+.card:nth-child(2)::before,
+.card:nth-child(2)::after {
+  content: "</>";
+  position: absolute;
+  color: rgba(76, 175, 80, 0.5);
+  font-family: 'Courier New', monospace;
+  font-weight: bold;
+  font-size: 30px;
+  animation: float-up 6s infinite linear;
+  z-index: 1;
+}
+
+.card:nth-child(2)::before {
+  top: 20px;
+  left: -10px;
+}
+
+.card:nth-child(2)::after {
+  bottom: 30px;
+  right: -10px;
+  animation-delay: 3s;
+}
+
+/* Game Controllers */
+.card:nth-child(3) {
+  position: relative;
+}
+
+.card:nth-child(3)::before,
+.card:nth-child(3)::after {
+  content: "⚡";
+  position: absolute;
+  font-size: 30px;
+  animation: float 5s infinite ease-in-out;
+  z-index: 1;
+}
+
+.card:nth-child(3)::before {
+  top: 50px;
+  right: -15px;
+}
+
+.card:nth-child(3)::after {
+  bottom: 70px;
+  left: -15px;
+  animation-delay: 2s;
+}
+
+/* Message Bubbles */
+.contact-card {
+  position: relative;
+}
+
+.contact-card::before,
+.contact-card::after {
+  content: "💬";
+  position: absolute;
+  font-size: 30px;
+  animation: float 4s infinite ease-in-out;
+  z-index: 1;
+  filter: brightness(0.5);
+}
+
+.contact-card::before {
+  top: 40px;
+  left: -15px;
+}
+
+.contact-card::after {
+  bottom: 60px;
+  right: -15px;
+  animation-delay: 1.5s;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f4f4f9;
+  margin: 0;
+  padding: 20px;
+  color: #333;
+  line-height: 1.6;
+}
+
+.main {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.card {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  flex: 1 1 300px;
+  max-width: 400px;
+  transition: transform 0.3s ease;
+  position: relative;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.profile-card {
+  flex: 1 1 600px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card a {
+  color: #ffd70f;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.card a:hover {
+  text-decoration: underline;
+}
+
+.contact-card {
+  background: #4CAF50;
+  color: white;
+}
+
+.contact-card a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.card-title {
+  font-size: 22px;
+  margin-bottom: 15px;
+  color: #4CAF50;
+  border-bottom: 2px solid #eee;
+  padding-bottom: 5px;
+}
+
+.contact-card .card-title {
+  color: #ffffff;
+  text-align: center;
+}
+
+.experience-item, 
+.project-item {
+  margin-bottom: 10px;
+  padding-left: 10px;
+  border-left: 3px solid #4CAF50;
+}
+
+strong {
+  color: #4CAF50;
+}
+
+.contact-card strong {
+  color: #ffffff;
+}
+
+.contact-card .project-item {
+  position: relative;
+  padding-left: 25px;    
+}
+
+.icon {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  filter: invert(1) brightness(0.9);
+}
