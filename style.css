@@ -285,8 +285,6 @@ strong {
     font-size: 16px;
   }
   
-  .pfp-container::before,
-  .pfp-container::after,
   .card:nth-child(2)::before,
   .card:nth-child(2)::after,
   .card:nth-child(3)::before,
