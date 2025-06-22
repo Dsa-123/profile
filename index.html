@@ -15,6 +15,9 @@
             <div class="cloud"></div>
             <div class="cloud"></div>
         </div>
+
+        <!-- Cookie Rain Effect Containter -->
+        <div class="cookie-rain" id="cookieRain"></div>
         
         <div class="main">
             <div class="card">
@@ -47,7 +50,7 @@
                     <h2 class="section-title">My Experience</h2>
                     <div class="row">
                         <div class="row-content">
-                            <p><strong>5+ years</strong> with <strong>Skript</strong> (Minecraft servers)</p>
+                            <p><strong>5+ years</strong> with <strong>Skript</strong> (MC servers)</p>
                         </div>
                     </div>
                     <div class="row">
@@ -170,13 +173,31 @@
             </div>
         </div>
 
+        <!-- Cookie Banner -->
+        <div class="cookie-banner" id="cookieBanner">
+            <div class="cookie-particles" id="cookieParticles"></div>
+            <img class="cookie-icon" src="./images/cookie_light.png">
+            <div class="cookie-text">
+                Congratulations! You've earned a cookie! :)
+            </div>
+            <div class="cookie-buttons">
+                <button class="cookie-btn accept" onclick="acceptCookie()">
+                    Accept Cookie 🍪
+                </button>
+                <button class="cookie-btn decline" onclick="declineCookie()">
+                    Decline
+                </button>
+            </div>
+        </div>
+
         <script>
             const config = {
                 status: 2, // 1 = online, 2 = dnd, 3 = taking a break
                 totalVisits: "TBD",
                 lightModeUses: 0,
                 darkModeUses: 0,
-                avgSessionTime: "TBD"
+                avgSessionTime: "TBD",
+                cookieAccepted: false
             };
 
             const statusConfig = {
@@ -263,10 +284,81 @@
                 }
             }
 
+            function createCookieParticles() {
+                const cookieParticles = document.getElementById('cookieParticles');
+                if (!cookieParticles) return;
+                
+                const particleCount = 4;
+                const cookieEmojis = ['🍪', '🥠', '🧈'];
+                
+                for (let i = 0; i < particleCount; i++) {
+                    const particle = document.createElement('div');
+                    particle.className = 'cookie-particle';
+                    particle.textContent = cookieEmojis[Math.floor(Math.random() * cookieEmojis.length)];
+                    particle.style.left = Math.random() * 90 + '%';
+                    particle.style.top = Math.random() * 80 + '%';
+                    particle.style.animationDelay = Math.random() * 2 + 's';
+                    particle.style.animationDuration = (Math.random() * 2 + 3) + 's';
+                    cookieParticles.appendChild(particle);
+                }
+            }
+
+            function createCookieRain() {
+                const cookieRain = document.getElementById('cookieRain');
+                if (!cookieRain) return;
+                
+                const cookieCount = 10;
+                const cookieEmojis = ['🍪'];
+                
+                for (let i = 0; i < cookieCount; i++) {
+                    setTimeout(() => {
+                        const cookie = document.createElement('div');
+                        cookie.className = 'falling-cookie';
+                        cookie.textContent = cookieEmojis[0];
+                        cookie.style.left = Math.random() * 100 + '%';
+                        cookie.style.animationDuration = (Math.random() * 2 + 1) + 's';
+                        cookie.style.animationDelay = '0s';
+                        
+                        cookieRain.appendChild(cookie);
+                        
+                        const animationDuration = parseFloat(cookie.style.animationDuration) * 1000;
+                        setTimeout(() => {
+                            if (cookie.parentNode) {
+                                cookie.parentNode.removeChild(cookie);
+                            }
+                        }, animationDuration + 500);
+                    }, i * 100);
+                }
+            }
+
+            function acceptCookie() {
+                config.cookieAccepted = true;
+                const banner = document.getElementById('cookieBanner');        
+                createCookieRain();
+                banner.classList.add('hidden');
+            }
+
+            function declineCookie() {
+                const banner = document.getElementById('cookieBanner');
+                banner.classList.add('hidden');
+                banner.style.display = 'none'                
+            }
+
+            function showCookieBanner() {
+                const banner = document.getElementById('cookieBanner');
+                if (banner) {
+                    setTimeout(() => {
+                        banner.style.display = 'block';
+                        createCookieParticles();
+                    }, 2000);
+                }
+            }
+
             window.addEventListener('load', function() {
                 createBackgroundParticles();
                 createCardParticles();
                 initializeStatus();
+                showCookieBanner();
                 
                 toggleDarkMode(); // default dark mode
             });
