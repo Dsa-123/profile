@@ -15,12 +15,7 @@
             <div class="cloud"></div>
             <div class="cloud"></div>
         </div>
-        <!-- Rain Container -->
-        <div class="rain-container" id="rainContainer">
-            <div class="rain-waves"></div>
-            <div class="puddle"></div>
-            <div id="rainDrops"></div>
-        </div>
+        
         <div class="main">
             <div class="card">
                 <!-- Card particles -->
@@ -35,8 +30,13 @@
 
                     <div class="pfp-container">
                         <img class="pfp" src="./images/pfp.jpg" alt="Profile Picture">
+                        <div class="status-indicator" id="statusIndicator">
+                            <div class="status-tooltip" id="statusTooltip">Available</div>
+                        </div>
                         <div class="particle"></div>
                         <div class="particle"></div>
+                        <div class="particle"></div>
+                        <div class="particle"></div>                        
                     </div>
                     <h1 class="card-title">About Me</h1>
                     <p class="intro-text">Hello there! 👋 I am <strong>dsa</strong>, an IT student and programmer from Syria.</p>
@@ -143,10 +143,61 @@
                         <img class="icon" src="./images/github.png" alt="Github">
                         <p><strong>GitHub:</strong> <a href="https://github.com/dsa-123">github.com/dsa-123</a></p>
                     </div>
+ 
+                    <!-- Statistics -->
+                    <div class="stats-section">
+                        <h3 class="stats-title">Website Statistics</h3>
+                        <div class="stats-grid">
+                            <div class="stat-item">
+                                <div class="stat-number" id="totalVisits">TBD</div>
+                                <div class="stat-label">Total Visits</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number" id="lightModeUses">0</div>
+                                <div class="stat-label">Light Mode Uses</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number" id="darkModeUses">0</div>
+                                <div class="stat-label">Dark Mode Uses</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number" id="avgSessionTime">TBD</div>
+                                <div class="stat-label">Avg Session</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
+
         <script>
+            const config = {
+                status: 2, // 1 = online, 2 = dnd, 3 = taking a break
+                totalVisits: "TBD",
+                lightModeUses: 0,
+                darkModeUses: 0,
+                avgSessionTime: "TBD"
+            };
+
+            const statusConfig = {
+                1: { class: 'online', text: 'Available', color: '#43b883' },
+                2: { class: 'dnd', text: 'Do Not Disturb', color: '#f04747' },
+                3: { class: 'away', text: 'Taking a Break', color: '#faa61a' }
+            };
+
+            function initializeStatus() {
+                const statusIndicator = document.getElementById('statusIndicator');
+                const statusTooltip = document.getElementById('statusTooltip');
+                const currentStatus = statusConfig[config.status];
+                
+                if (statusIndicator && currentStatus) {
+                    statusIndicator.className = `status-indicator ${currentStatus.class}`;
+                }
+                if (statusTooltip && currentStatus) {
+                    statusTooltip.textContent = currentStatus.text;
+                }
+            }
+
             function toggleDarkMode() {
                 const body = document.body;
                 const modeIcon = document.getElementById('mode-icon');
@@ -155,16 +206,34 @@
                 body.classList.toggle('dark-mode');
                 
                 if (body.classList.contains('dark-mode')) {
-                    modeIcon.textContent = '☀️';
-                    modeText.textContent = 'Light';
+                    if (modeIcon) modeIcon.textContent = '☀️';
+                    if (modeText) modeText.textContent = 'Light';
+                    config.darkModeUses++;
+                    updateStats();
                 } else {
-                    modeIcon.textContent = '🌙';
-                    modeText.textContent = 'Dark';
+                    if (modeIcon) modeIcon.textContent = '🌙';
+                    if (modeText) modeText.textContent = 'Dark';
+                    config.lightModeUses++;
+                    updateStats();
+                }
+            }
+
+            function updateStats() {
+                const lightModeElement = document.getElementById('lightModeUses');
+                const darkModeElement = document.getElementById('darkModeUses');
+                
+                if (lightModeElement) {
+                    lightModeElement.textContent = config.lightModeUses.toLocaleString();
+                }
+                if (darkModeElement) {
+                    darkModeElement.textContent = config.darkModeUses.toLocaleString();
                 }
             }
 
             function createBackgroundParticles() {
                 const bgParticles = document.getElementById('bgParticles');
+                if (!bgParticles) return;
+                
                 const particleCount = 5;
                 
                 for (let i = 0; i < particleCount; i++) {
@@ -180,14 +249,14 @@
 
             function createCardParticles() {
                 const cardParticles = document.getElementById('cardParticles');
-                const particleCount = 3;
+                if (!cardParticles) return;
+                
+                const particleCount = 6;
                 for (let i = 0; i < particleCount; i++) {
-                    const particle = document.createElement('div');
+                    const particle = document.createElement('div');   
                     particle.className = 'card-particle';
-                    // random position
                     particle.style.left = Math.random() * 100 + '%';
                     particle.style.top = Math.random() * 100 + '%';
-                    // random delay * duration
                     particle.style.animationDelay = Math.random() * 8 + 's';
                     particle.style.animationDuration = (Math.random() * 4 + 6) + 's';
                     cardParticles.appendChild(particle);
@@ -197,8 +266,11 @@
             window.addEventListener('load', function() {
                 createBackgroundParticles();
                 createCardParticles();
-                document.body.classList.toggle('dark-mode');
+                initializeStatus();
+                
+                toggleDarkMode(); // default dark mode
             });
+
         </script>
     </body>
 </html>
