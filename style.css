@@ -253,6 +253,94 @@ body.dark-mode .pfp {
     box-shadow: 0 8px 20px rgba(157, 78, 221, 0.4);
 }
 
+.status-indicator {
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 3px solid #fff;
+    z-index: 20;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    animation: statusPulse 2s ease-in-out infinite;
+}
+
+body.dark-mode .status-indicator {
+    border: 3px solid #1e1e32;
+}
+
+.status-indicator.online {
+    background: #43b883;
+    box-shadow: 0 0 10px rgba(67, 184, 131, 0.5);
+}
+
+.status-indicator.dnd {
+    background: #f04747;
+    box-shadow: 0 0 10px rgba(240, 71, 71, 0.5);
+}
+
+.status-indicator.away {
+    background: #faa61a;
+    box-shadow: 0 0 10px rgba(250, 166, 26, 0.5);
+}
+
+@keyframes statusPulse {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.1);
+        opacity: 0.8;
+    }
+}
+
+.status-tooltip {
+    position: absolute;
+    bottom: 35px;
+    right: -10px;
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 12px;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+    z-index: 30;
+    pointer-events: none;
+}
+
+body.dark-mode .status-tooltip {
+    background: rgba(255, 255, 255, 0.9);
+    color: #333;
+}
+
+.status-tooltip::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: rgba(0, 0, 0, 0.9) transparent transparent transparent;
+}
+
+body.dark-mode .status-tooltip::after {
+    border-color: rgba(255, 255, 255, 0.9) transparent transparent transparent;
+}
+
+.status-indicator:hover .status-tooltip {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
 .particle {
     position: absolute;
     width: 8px;
@@ -261,7 +349,7 @@ body.dark-mode .pfp {
     border-radius: 50%;
     opacity: 0.9;
     animation: float 3s ease-in-out infinite;
-    z-index: 20;
+    z-index: 25;
 }
 
 body.dark-mode .particle {
@@ -269,29 +357,21 @@ body.dark-mode .particle {
 }
 
 .particle:nth-child(1) {
-    top: -10px;
+    top: -5px;
     left: 20px;
     animation-delay: 0s;
     animation-duration: 3s;
 }
-
-.particle:nth-child(2) {
-    top: 30px;
-    right: -15px;
-    animation-delay: 1s;
-    animation-duration: 4s;
-}
-
-.particle:nth-child(2) {
-    top: -5px;
-    right: 25px;
-    animation-delay: 0.5s;
-    animation-duration: 4.5s;
-}
-
 .particle:nth-child(3) {
-    top: 50px;
-    left: -20px;
+    top: -5px;
+    right: 20px;
+    animation-delay: 2s;
+    animation-duration: 2.5s;
+}
+
+.particle:nth-child(4) {
+    top: 100%;
+    right: -10%;
     animation-delay: 1.5s;
     animation-duration: 3.2s;
 }
@@ -399,6 +479,77 @@ body.dark-mode strong {
     padding: 10px 0;
 }
 
+.stats-section {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #f0f0f0;
+}
+
+body.dark-mode .stats-section {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.stats-title {
+    color: #667eea;
+    font-size: 1em;
+    margin-bottom: 15px;
+    font-weight: 600;
+    text-align: center;
+}
+
+body.dark-mode .stats-title {
+    color: #9d4edd;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.stat-item {
+    text-align: center;
+    padding: 10px;
+    background: rgba(102, 126, 234, 0.1);
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+body.dark-mode .stat-item {
+    background: rgba(157, 78, 221, 0.2);
+}
+
+.stat-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
+}
+
+body.dark-mode .stat-item:hover {
+    box-shadow: 0 4px 12px rgba(157, 78, 221, 0.3);
+}
+
+.stat-number {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #667eea;
+    margin-bottom: 5px;
+}
+
+body.dark-mode .stat-number {
+    color: #9d4edd;
+}
+
+.stat-label {
+    font-size: 0.85em;
+    color: #666;
+    line-height: 1.2;
+}
+
+body.dark-mode .stat-label {
+    color: #bbb;
+}
+
 a {
     color: #667eea;
     text-decoration: none;
@@ -446,6 +597,14 @@ body.dark-mode .icon{
     .pfp {
         width: 80px;
         height: 80px;
+    }
+
+    .status-indicator {
+        width: 16px;
+        height: 16px;
+        bottom: 6px;
+        right: 6px;
+        border-width: 2px;
     }
     
     .card-title {
@@ -496,5 +655,21 @@ body.dark-mode .icon{
         margin-right: 0;
         margin-bottom: 5px;
     }
-}
 
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+
+    .stat-item {
+        padding: 8px;
+    }
+
+    .stat-number {
+        font-size: 1em;
+    }
+
+    .stat-label {
+        font-size: 0.75em;
+    }
+}
