@@ -574,6 +574,193 @@ body.dark-mode .icon{
     filter: invert(1) brightness(0.9);
 }
 
+.cookie-banner {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: hsla(0, 0%, 85%, 0.95);
+    backdrop-filter: blur(15px);
+    border-radius: 15px;
+    padding: 20px 25px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    z-index: 600;
+    max-width: 500px;
+    width: 90%;
+    text-align: center;
+    animation: slideUp 0.6s ease-out;
+    transition: all 0.3s ease;
+}
+
+body.dark-mode .cookie-banner {
+    background: hsla(240, 25%, 26%, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+.cookie-banner.hidden {
+    opacity: 0;
+    transform: translateX(-50%) translateY(100px);
+    pointer-events: none;
+}
+
+.cookie-text {
+    font-weight: bold;
+    background: linear-gradient(135deg, #FFD700, #667eea, #87CEEB, #764ba2);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 14px;
+    line-height: 1.5;
+    margin-bottom: 15px;
+    animation: gradientShift 4s ease infinite;
+    background-size: 200% 100%;    
+}
+
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+
+body.dark-mode .cookie-text {
+    color: #ccc;
+}
+
+.cookie-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    margin: 0 auto 10px auto;
+    display: block;
+    margin-left: 49%;
+    filter: drop-shadow(0 0 10px rgba(255, 165, 0, 0.5));
+    object-fit: cover;
+    transition: all 0.3s ease;
+}
+
+.cookie-icon:hover {
+    filter: drop-shadow(0 0 15px rgba(255, 165, 0, 0.8));
+}
+
+.cookie-buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.cookie-btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 25px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    min-width: 100px;
+}
+
+.cookie-btn.accept {
+    background: linear-gradient(45deg, #667eea, #764ba2, #667eea);
+    background-size: 200% 200%;
+    background-position: 0% 50%;
+    color: white;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+    transition: all 0.3s ease;
+}
+
+.cookie-btn.accept:hover {
+    transform: translateY(-2px);
+    background-position: 75% 50%;
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+}
+
+.cookie-btn.decline {
+    background: rgba(255, 255, 255, 0.2);
+    color: #666;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+body.dark-mode .cookie-btn.decline {
+    background: rgba(255, 255, 255, 0.1);
+    color: #ccc;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.cookie-btn.decline:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-1px);                
+}
+
+body.dark-mode .cookie-btn.decline:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(100px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+}
+
+.cookie-rain {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 500;
+    overflow: hidden;
+}
+
+.falling-cookie {
+    position: absolute;
+    font-size: 30px;
+    animation: cookieFall linear;
+    top: -50px;
+}
+
+@keyframes cookieFall {
+    0% {
+        transform: translateY(0) rotate(0deg);
+    }
+    100% {
+        transform: translateY(calc(100vh + 150px)) rotate(360deg);
+    }
+}
+
+.cookie-particles {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.cookie-particle {
+    position: absolute;
+    font-size: 12px;
+    opacity: 0.9;
+    animation: cookieFloat 4s ease-in-out infinite;
+}
+
+@keyframes cookieFloat {
+    0%, 100% {
+        transform: translateY(0px) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-30px) rotate(180deg);
+    }
+}
+
 @media (max-width: 600px) {
     body {
         padding: 15px;
@@ -671,5 +858,29 @@ body.dark-mode .icon{
 
     .stat-label {
         font-size: 0.75em;
+    }
+    .cookie-banner {
+        bottom: 15px;
+        padding: 15px 20px;
+        max-width: 95%;
+    }
+
+    .cookie-text {
+        font-size: 13px;
+    }
+
+    .cookie-buttons {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .cookie-btn {
+        padding: 8px 16px;
+        font-size: 13px;
+        min-width: auto;
+    }
+
+    .falling-cookie {
+        font-size: 16px;
     }
 }
