@@ -14,9 +14,11 @@
             <div class="cloud"></div>
             <div class="cloud"></div>
             <div class="cloud"></div>
+            <div class="cloud"></div>
+            <div class="cloud"></div>
         </div>
 
-        <!-- Cookie Rain Effect Containter -->
+        <!-- Cookie Rain Container -->
         <div class="cookie-rain" id="cookieRain"></div>
         
         <div class="main">
@@ -27,8 +29,8 @@
                 <!-- Profile Section -->
                 <div class="profile-section">
                     <button class="dark-mode-toggle" onclick="toggleDarkMode()">
-                        <span id="mode-icon">🌙</span>
-                        <span id="mode-text">Dark</span>
+                        <p id="mode-icon">🌙 Dark</p>
+                        <!-- <span id="mode-text">Dark</span> -->
                     </button>
 
                     <div class="pfp-container">
@@ -191,8 +193,19 @@
         </div>
 
         <script>
+            let cachedElements = {};
+
+            function cacheElements() {
+                cachedElements = {
+                    body: document.body,
+                    modeIcon: document.getElementById('mode-icon'),
+                    lightModeElement: document.getElementById('lightModeUses'),
+                    darkModeElement: document.getElementById('darkModeUses')
+                };
+            }
+
             const config = {
-                status: 2, // 1 = online, 2 = dnd, 3 = taking a break
+                status: 2, // 1 = online, 2 = dnd, 3 = taking a break, 4 = sleep mode
                 totalVisits: "TBD",
                 lightModeUses: 0,
                 darkModeUses: 0,
@@ -203,7 +216,8 @@
             const statusConfig = {
                 1: { class: 'online', text: 'Available', color: '#43b883' },
                 2: { class: 'dnd', text: 'Do Not Disturb (Not Sol 🩷)', color: '#f04747' },
-                3: { class: 'away', text: 'Taking a Break', color: '#faa61a' }
+                3: { class: 'away', text: 'Taking a Break', color: '#faa61a' },
+                4: { class: 'sleep', text: 'Sleep Mode', color: '#faa61a' }
             };
 
             function initializeStatus() {
@@ -220,34 +234,24 @@
             }
 
             function toggleDarkMode() {
-                const body = document.body;
-                const modeIcon = document.getElementById('mode-icon');
-                const modeText = document.getElementById('mode-text');
+                cachedElements.body.classList.toggle('dark-mode');
                 
-                body.classList.toggle('dark-mode');
-                
-                if (body.classList.contains('dark-mode')) {
-                    if (modeIcon) modeIcon.textContent = '☀️';
-                    if (modeText) modeText.textContent = 'Light';
+                if (cachedElements.body.classList.contains('dark-mode')) {
+                    cachedElements.modeIcon.textContent = '☀️ Light';
                     config.darkModeUses++;
-                    updateStats();
                 } else {
-                    if (modeIcon) modeIcon.textContent = '🌙';
-                    if (modeText) modeText.textContent = 'Dark';
+                    cachedElements.modeIcon.textContent = '🌙 Dark';
                     config.lightModeUses++;
-                    updateStats();
                 }
+                updateStats();
             }
 
             function updateStats() {
-                const lightModeElement = document.getElementById('lightModeUses');
-                const darkModeElement = document.getElementById('darkModeUses');
-                
-                if (lightModeElement) {
-                    lightModeElement.textContent = config.lightModeUses.toLocaleString();
+                if (cachedElements.lightModeElement) {
+                    cachedElements.lightModeElement.textContent = config.lightModeUses.toLocaleString();
                 }
-                if (darkModeElement) {
-                    darkModeElement.textContent = config.darkModeUses.toLocaleString();
+                if (cachedElements.darkModeElement) {
+                    cachedElements.darkModeElement.textContent = config.darkModeUses.toLocaleString();
                 }
             }
 
@@ -255,7 +259,7 @@
                 const bgParticles = document.getElementById('bgParticles');
                 if (!bgParticles) return;
                 
-                const particleCount = 5;
+                const particleCount = 12;
                 
                 for (let i = 0; i < particleCount; i++) {
                     const particle = document.createElement('div');
@@ -272,7 +276,7 @@
                 const cardParticles = document.getElementById('cardParticles');
                 if (!cardParticles) return;
                 
-                const particleCount = 6;
+                const particleCount = 10;
                 for (let i = 0; i < particleCount; i++) {
                     const particle = document.createElement('div');   
                     particle.className = 'card-particle';
@@ -307,7 +311,7 @@
                 const cookieRain = document.getElementById('cookieRain');
                 if (!cookieRain) return;
                 
-                const cookieCount = 10;
+                const cookieCount = 20;
                 const cookieEmojis = ['🍪'];
                 
                 for (let i = 0; i < cookieCount; i++) {
@@ -355,6 +359,14 @@
             }
 
             window.addEventListener('load', function() {
+                const now = new Date();
+                const hour = now.getUTCHours() + 3; // GMT + 3
+                if (hour >= 2 && hour < 22) {
+                    config.status = 4;
+                }
+                console.log(hour)
+-                
+                cacheElements();
                 createBackgroundParticles();
                 createCardParticles();
                 initializeStatus();
