@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -374,8 +375,8 @@
                 const now = new Date();
                 
                 // muy time (GMT+3)
-                const myHour = now.getUTCHours() + 3;
-                const myMinute = now.getUTCMinutes();
+                let myHour = now.getUTCHours() + 3;
+                let myMinute = now.getUTCMinutes();
                 if (myHour >= 24) myHour -= 24;
                 if (myHour < 0) myHour += 24;
                 
