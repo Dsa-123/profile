@@ -45,8 +45,20 @@
                     </div>
                     <h1 class="card-title">About Me</h1>
                     <p class="intro-text">Hello there! 👋 I am <strong>dsa</strong>, an IT student and programmer from Syria.</p>
-                </div>
 
+                    <!-- Time Section -->
+                    <div class="timezone-section">
+                        <div class="timezone-row">
+                            <span class="timezone-label">My time:</span>
+                            <span class="timezone-value" id="myTime">GMT+3</span>
+                        </div>
+                        <div class="timezone-row">
+                            <span class="timezone-label">Your time:</span>
+                            <span class="timezone-value" id="userTime">Detecting...</span>
+                        </div>
+                    </div>
+                </div>
+                
                 <!-- Experience Section -->
                 <div class="section">
                     <h2 class="section-title">My Experience</h2>
@@ -358,7 +370,32 @@
                 }
             }
 
-            window.addEventListener('load', function() {
+            function updateTime() {
+                const now = new Date();
+                
+                // muy time (GMT+3)
+                const myHour = now.getUTCHours() + 3;
+                const myMinute = now.getUTCMinutes();
+                if (myHour >= 24) myHour -= 24;
+                if (myHour < 0) myHour += 24;
+                
+                const myAmPm = myHour >= 12 ? 'PM' : 'AM';
+                const myDisplayHour = myHour === 0 ? 12 : (myHour > 12 ? myHour - 12 : myHour);
+                const myTimeStr = `${myDisplayHour}:${myMinute.toString().padStart(2, '0')} ${myAmPm}`;
+                document.getElementById('myTime').textContent = `GMT+3 (${myTimeStr})`;
+                
+                // user time
+                const userTimeStr = now.toLocaleTimeString('en-US', { 
+                    hour12: true,
+                    hour: 'numeric', 
+                    minute: '2-digit'
+                });
+                const userOffset = -now.getTimezoneOffset() / 60;
+                const offsetStr = userOffset >= 0 ? `+${userOffset}` : userOffset;
+                document.getElementById('userTime').textContent = `GMT${offsetStr} (${userTimeStr})`;
+            }
+
+            window.addEventListener('load', function() {                
                 const now = new Date();
                 const hour = now.getUTCHours() + 3; // GMT + 3
                 if (hour >= 0 && hour < 10) {
@@ -373,6 +410,22 @@
                 showCookieBanner();
                 
                 toggleDarkMode(); // default dark mode
+
+                let dots = '';
+                const interval = setInterval(() => {
+                    dots += '.';
+                    if (dots.length > 3) dots = '';
+                    const text = `Updating${dots}`.padEnd(11, ' ');
+                    document.getElementById('myTime').textContent = text;
+                    document.getElementById('userTime').textContent = text;                    
+                }, 300);
+
+
+                setTimeout(() => {
+                    clearInterval(interval)
+                    updateTime()
+                    setInterval(updateTime(), 60000)
+                }, 5000)
             });
 
         </script>
