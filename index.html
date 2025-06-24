@@ -361,7 +361,7 @@
             window.addEventListener('load', function() {
                 const now = new Date();
                 const hour = now.getUTCHours() + 3; // GMT + 3
-                if (hour >= 2 && hour < 10) {
+                if (hour >= 0 && hour < 10) {
                     config.status = 4;
                 }
                 console.log(hour)
