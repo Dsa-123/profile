@@ -403,15 +403,11 @@
                     config.status = 4;
                 }
                 console.log(hour)
-                fetch('/api/visits')
-                    .then(response => response.json())
-                    .then(data => {
-                      document.getElementById('totalVisits').textContent = data.count;
-                    })
-                    .catch(error => {
-                      console.error('Error:', error);
-                      document.getElementById('totalVisits').textContent = 'N/A';
-                });
+                fetch('https://api.countapi.xyz/hit/your-domain.com/visits')
+                  .then(res => res.json())
+                  .then(data => {
+                    document.getElementById('totalVisits').textContent = data.value;
+                  });
 
                 cacheElements();
                 createBackgroundParticles();
