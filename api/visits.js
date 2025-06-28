@@ -1,12 +1,16 @@
-import { increment } from '@vercel/analytics';
+const { kv } = require('@vercel/kv');
 
 export default async function handler(req, res) {
   try {
-    await increment('visits');
-    const visits = await getVisitsCount();
+    let count = await kv.get('visitCount') || 0;
     
-    res.status(200).json({ count: visits });
+    count = parseInt(count) + 1;
+    
+    await kv.set('visitCount', count);
+    
+    return res.status(200).json({ count });
   } catch (error) {
-    res.status(500).json({ error: '0' });
+    console.error('Error updating:', error);
+    return res.status(500).json({ error: 'Failed to update' });
   }
 }
