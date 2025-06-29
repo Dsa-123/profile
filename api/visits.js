@@ -65,7 +65,7 @@ export default async function handler(req, res) {
   }
     try {
     if (!process.env.REDIS_URL) {
-        console.error('REDIS_URL environment variable is not set');Add commentMore actions
+        console.error('REDIS_URL environment variable is not set');
         return res.status(500).json({ 
           success: false,
           error: 'Redis configuration missing'
