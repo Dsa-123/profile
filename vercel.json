@@ -16,8 +16,8 @@
       "dest": "/api/visits"
     },
     {
-      "src": "/(.*)",
-      "dest": "public/$1"
+      "src": "/public/(.*)",
+      "dest": "/public/$1"
     }
   ]
 }
