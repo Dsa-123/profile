@@ -413,12 +413,6 @@
                 if (hour >= 0 && hour < 10) {
                     config.status = 4;
                 }
-                console.log(hour)
-                fetch('https://api.countapi.xyz/hit/it-dsa.vercel.app/visits')
-                  .then(res => res.json())
-                  .then(data => {
-                    document.getElementById('totalVisits').textContent = data.value;
-                  });
 
                 cacheElements();
                 createBackgroundParticles();
