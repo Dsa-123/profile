@@ -12,8 +12,8 @@
   ],
   "routes": [
     {
-      "src": "/api/visits",
-      "dest": "/api/visits"
+      "src": "/api/visits.js",
+      "dest": "/api/visits.js"
     },
     {
       "src": "/public/(.*)",
