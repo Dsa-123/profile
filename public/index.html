@@ -271,11 +271,13 @@
                 }
             }
 
-            async function updateThemeStats() {
-                let response = await fetch('https://it-dsa.vercel.app/api/theme');
-                let data = await response.json();
-                document.getElementById('lightModeUses').textContent = data.light;
-                document.getElementById('darkModeUses').textContent = data.dark;
+            function updateThemeStats(stats) {
+                if (cachedElements.lightModeElement) {
+                    cachedElements.lightModeElement.textContent = stats.data.light.toLocaleString();
+                }
+                if (cachedElements.darkModeElement) {
+                    cachedElements.darkModeElement.textContent = stats.data.dark.toLocaleString();
+                }
             }
 
             function createBackgroundParticles() {

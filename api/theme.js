@@ -37,7 +37,7 @@ export default async function handler(req, res) {
       
       return res.json({
         success: true,
-        stats: {
+        data: {
           light: parseInt(lightCount),
           dark: parseInt(darkCount),
         }
