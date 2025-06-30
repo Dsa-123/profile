@@ -218,7 +218,7 @@
             }
 
             const config = {
-                status: 2, // 1 = online, 2 = dnd, 3 = taking a break, 4 = sleep mode
+                status: process.env.STATUS, // 1 = online, 2 = dnd, 3 = taking a break, 4 = sleep mode
                 avgSessionTime: "TBD",
                 cookieAccepted: false
             };
@@ -245,13 +245,16 @@
 
             async function toggleDarkMode() {
                 cachedElements.body.classList.toggle('dark-mode');
-                
+                let theme = '';
+
                 if (cachedElements.body.classList.contains('dark-mode')) {
                     cachedElements.modeIcon.textContent = '☀️ Light';
                     config.darkModeUses++;
+                    theme = 'dark';
                 } else {
                     cachedElements.modeIcon.textContent = '🌙 Dark';
                     config.lightModeUses++;
+                    theme = 'light';
                 }
                 try{
                     await fetch('https://it-dsa.vercel.app/api/theme.js', {
@@ -416,6 +419,12 @@
                 
 
                 try {
+                    // fetch('https://it-dsa.vercel.app/api/theme', {
+                    //     method: 'GET',
+                    //     headers: { 'Content-Type': 'application/json' },
+                    //     body: JSON.stringify({ theme: 'light' })
+                    // });
+
                     let response = await fetch('https://it-dsa.vercel.app/api/theme');
                     let data = await response.json();
                     document.getElementById('lightModeUses').textContent = data.light;
