@@ -265,19 +265,17 @@
 
                     const response = await fetch('https://it-dsa.vercel.app/api/theme');
                     const stats = await response.json(); 
-                    updateThemeStats(stats);
+                    updateThemeStats();
                 } catch(error){
                     console.error('Error updating theme.js:', error);
                 }
             }
 
-            function updateThemeStats(stats) {
-                if (cachedElements.lightModeElement) {
-                    cachedElements.lightModeElement.textContent = stats.light.toLocaleString();
-                }
-                if (cachedElements.darkModeElement) {
-                    cachedElements.darkModeElement.textContent = stats.dark.toLocaleString();
-                }
+            async function updateThemeStats() {
+                let response = await fetch('https://it-dsa.vercel.app/api/theme');
+                let data = await response.json();
+                document.getElementById('lightModeUses').textContent = data.light;
+                document.getElementById('darkModeUses').textContent = data.dark;
             }
 
             function createBackgroundParticles() {
