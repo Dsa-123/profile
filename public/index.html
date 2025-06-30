@@ -218,7 +218,7 @@
             }
 
             const config = {
-                status: process.env.STATUS, // 1 = online, 2 = dnd, 3 = taking a break, 4 = sleep mode
+                status: process.env.NEXT_PUBLIC_STATUS, // 1 = online, 2 = dnd, 3 = taking a break, 4 = sleep mode
                 avgSessionTime: "TBD",
                 cookieAccepted: false
             };
@@ -416,12 +416,6 @@
                 
 
                 try {
-                    // fetch('https://it-dsa.vercel.app/api/theme', {
-                    //     method: 'GET',
-                    //     headers: { 'Content-Type': 'application/json' },
-                    //     body: JSON.stringify({ theme: 'light' })
-                    // });
-
                     let response = await fetch('https://it-dsa.vercel.app/api/theme');
                     let data = await response.json();
                     document.getElementById('lightModeUses').textContent = data.light;
