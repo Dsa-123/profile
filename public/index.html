@@ -257,13 +257,13 @@
                     theme = 'light';
                 }
                 try{
-                    await fetch('https://it-dsa.vercel.app/api/theme.js', {
+                    await fetch('https://it-dsa.vercel.app/api/theme', {
                         method: 'POST',
                         headers: { 'Content-Type':  'application/json'},
                         body: JSON.stringify({ theme })
                     });
 
-                    const stats = await fetch('https://it-dsa.vercel.app/api/theme.js').then(res => res.json());
+                    const stats = await fetch('https://it-dsa.vercel.app/api/theme').then(res => res.json());
                     updateThemeStats(stats)
                 } catch(error){
                     console.error('Error updating theme.js:', error);
