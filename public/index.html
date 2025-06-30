@@ -263,8 +263,9 @@
                         body: JSON.stringify({ theme })
                     });
 
-                    const stats = await fetch('https://it-dsa.vercel.app/api/theme').then(res => res.json());
-                    updateThemeStats(stats)
+                    const response = await fetch('https://it-dsa.vercel.app/api/theme');
+                    const stats = await response.json(); 
+                    updateThemeStats(stats);
                 } catch(error){
                     console.error('Error updating theme.js:', error);
                 }
