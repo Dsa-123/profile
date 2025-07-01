@@ -24,6 +24,10 @@
       "dest": "/api/session.js"
     },
     {
+      "src": "/api/status",
+      "dest": "/api/status.js"
+    },    
+    {
       "src": "/(.*)",
       "dest": "public/$1"
     }
