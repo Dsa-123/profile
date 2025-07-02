@@ -515,8 +515,13 @@
       function animateNumber(elementId, newNumber) {
         const element = document.getElementById(elementId);
         const numberDisplay = element.querySelector('.number-display');
-        const wrapper = numberDisplay.querySelector('.number-wrapper');
         const currentNum = numberDisplay.querySelector('.current-number');
+
+        if (parseInt(currentNum.textContent) == newNumber){
+            return
+        }
+        
+        const wrapper = numberDisplay.querySelector('.number-wrapper');
         const nextNum = numberDisplay.querySelector('.next-number');
 
         nextNum.textContent = newNumber;
