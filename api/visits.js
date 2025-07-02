@@ -10,12 +10,17 @@ export default async function handler(req, res) {
   }
 
   else if(req.method === 'POST'){
-    await redis.set('visits', 80);
-    await redis.incr('visits');
+    try {
+      const redis = await getRedisClient();
+      await redis.set('visits', 80);
+      await redis.incr('visits');
 
-    return res.status(200).json({
-      sucess: true
-    });
+      return res.status(200).json({
+        success: true
+      });
+    } catch (error) {
+      return handleRedisError(error, res);
+    }
   }
   else{  
     try {
