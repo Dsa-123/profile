@@ -510,7 +510,7 @@
                 setTimeout(() => {
                     clearInterval(interval)
                     updateTime()
-                    setInterval(updateTime(), 60000)
+                    setInterval(updateTime, 60000)
                 }, 5000)
             });
         </script>
