@@ -1,522 +1,582 @@
-
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Portfolio</title>
-        <link href="./style.css" rel="stylesheet">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <body>
-        <!-- Background particles -->
-        <div class="bg-particles" id="bgParticles"></div>
-        
-        <!-- Clouds -->
-        <div class="clouds">
-            <div class="cloud"></div>
-            <div class="cloud"></div>
-            <div class="cloud"></div>
-            <div class="cloud"></div>
-            <div class="cloud"></div>
+  <head>
+    <title>Portfolio</title>
+    <link href="./style.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+  <body>
+    <!-- Background particles -->
+    <div class="bg-particles" id="bgParticles"></div>
+
+    <!-- Clouds -->
+    <div class="clouds">
+      <div class="cloud"></div>
+      <div class="cloud"></div>
+      <div class="cloud"></div>
+      <div class="cloud"></div>
+      <div class="cloud"></div>
+    </div>
+
+    <!-- Cookie Rain Container -->
+    <div class="cookie-rain" id="cookieRain"></div>
+
+    <div class="main">
+      <div class="card">
+        <!-- Card particles -->
+        <div class="card-particles" id="cardParticles"></div>
+
+        <!-- Profile Section -->
+        <div class="profile-section">
+          <button class="dark-mode-toggle" onclick="toggleDarkMode()">
+            <p id="mode-icon">🌙 Dark</p>
+            <!-- <span id="mode-text">Dark</span> -->
+          </button>
+
+          <div class="pfp-container">
+            <img class="pfp" src="./images/pfp.jpg" alt="Profile Picture" />
+            <div class="status-indicator" id="statusIndicator">
+              <div class="status-tooltip" id="statusTooltip">Available</div>
+            </div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+          </div>
+          <h1 class="card-title">About Me</h1>
+          <p class="intro-text">
+            Hello there! 👋 I am <strong>dsa</strong>, an IT student and
+            programmer from Syria.
+          </p>
+
+          <!-- Time Section -->
+          <div class="timezone-section">
+            <div class="timezone-row">
+              <span class="timezone-label">My time:</span>
+              <span class="timezone-value" id="myTime">GMT+3</span>
+            </div>
+            <div class="timezone-row">
+              <span class="timezone-label">Your time:</span>
+              <span class="timezone-value" id="userTime">Detecting...</span>
+            </div>
+          </div>
         </div>
 
-        <!-- Cookie Rain Container -->
-        <div class="cookie-rain" id="cookieRain"></div>
-        
-        <div class="main">
-            <div class="card">
-                <!-- Card particles -->
-                <div class="card-particles" id="cardParticles"></div>
-
-                <!-- Profile Section -->
-                <div class="profile-section">
-                    <button class="dark-mode-toggle" onclick="toggleDarkMode()">
-                        <p id="mode-icon">🌙 Dark</p>
-                        <!-- <span id="mode-text">Dark</span> -->
-                    </button>
-
-                    <div class="pfp-container">
-                        <img class="pfp" src="./images/pfp.jpg" alt="Profile Picture">
-                        <div class="status-indicator" id="statusIndicator">
-                            <div class="status-tooltip" id="statusTooltip">Available</div>
-                        </div>
-                        <div class="particle"></div>
-                        <div class="particle"></div>
-                        <div class="particle"></div>
-                        <div class="particle"></div>                        
-                    </div>
-                    <h1 class="card-title">About Me</h1>
-                    <p class="intro-text">Hello there! 👋 I am <strong>dsa</strong>, an IT student and programmer from Syria.</p>
-
-                    <!-- Time Section -->
-                    <div class="timezone-section">
-                        <div class="timezone-row">
-                            <span class="timezone-label">My time:</span>
-                            <span class="timezone-value" id="myTime">GMT+3</span>
-                        </div>
-                        <div class="timezone-row">
-                            <span class="timezone-label">Your time:</span>
-                            <span class="timezone-value" id="userTime">Detecting...</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Experience Section -->
-                <div class="section">
-                    <h2 class="section-title">My Experience</h2>
-                    <div class="row">
-                        <div class="row-content">
-                            <p><strong>5+ years</strong> with <strong>Skript</strong> (MC servers)</p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="row-content">
-                            <p><strong>2+ years</strong> with <strong>C++</strong> (algorithms & problem-solving)</p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="row-content">
-                            <p><strong>2+ years</strong> with <strong>Java</strong></p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="row-content">
-                            <p><strong>1+ year</strong> in <strong>Web Dev</strong> (HTML/CSS/JS + React)</p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="row-content">
-                            <p><strong>1+ year</strong> in <strong>Game Design</strong> (Godot Engine)</p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="row-content">
-                            <p><strong>6+ months</strong> with <strong>Discord bots</strong> (discord.js & Python)</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Projects Section -->
-                <div class="section">
-                    <h2 class="section-title">My Projects</h2>
-                    
-                    <h3 class="subsection-title">MC Servers</h3>
-                    <div class="row">
-                        <div class="row-content">
-                            <p><strong>Ez Mines</strong> – Developer – 1.2K+ Discord members. <a href="https://discord.gg/V9wEqqRfuD">Discord Link</a></p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="row-content">
-                            <p><strong>Grow a Crop</strong> – Co-Founder & Developer – 200+ Discord members. <a href="https://discord.gg/growacrop">Discord Link</a></p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="row-content">
-                            <p><strong>Fang SMP</strong> – Admin & Developer – 1K+ Discord members, closed in 2024</p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="row-content">
-                            <p><strong>AFK Mining Tycoon</strong> – Developer – 300+ members, closed</p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="row-content">
-                            <p><strong>Monsterify Tycoon</strong> – Owner – 100+ members in 2 weeks of launch (closed)</p>
-                        </div>
-                    </div>
-
-                    <h3 class="subsection-title">Game Dev</h3>
-                    <div class="row">
-                        <div class="row-content">
-                            <p><strong>Top Down Game</strong> – Boss fights & rounds system (WIP)</p>
-                        </div>
-                    </div>
-
-                    <h3 class="subsection-title">Discord Bots</h3>
-                    <div class="row">
-                        <div class="row-content">
-                            <p><strong>Checkerify</strong> – Username checker (discontinued)</p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="row-content">
-                            <p><strong>Vexis Bot</strong> – Multipurpose bot (in development)</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Contact Section -->
-                <div class="section">
-                    <h2 class="section-title">Contact Me</h2>
-                    <div class="contact-row">
-                        <img class="icon" src="./images/mail_white.png" alt="Mail">
-                        <p><strong>Email:</strong> <a href="mailto:dragons11@hotmail.com">dragons11@hotmail.com</a></p>
-                    </div>
-                    <div class="contact-row">
-                        <img class="icon" src="./images/discord.png" alt="Discord">
-                        <p><strong>Discord:</strong> @x8s</p>
-                    </div>
-                    <div class="contact-row">
-                        <img class="icon" src="./images/github.png" alt="Github">
-                        <p><strong>GitHub:</strong> <a href="https://github.com/dsa-123">github.com/dsa-123</a></p>
-                    </div>
- 
-                    <!-- Statistics -->
-                    <div class="stats-section">
-                        <h3 class="stats-title">Website Statistics</h3>
-                        <div class="stats-grid">
-                            <div class="stat-item">
-                                <div class="stat-number" id="totalVisits">
-                                    <div class="number-wrapper">
-                                        <div class="current-number">0</div>
-                                        <div class="next-number">0</div>
-                                    </div>
-                                </div>
-                                <div class="stat-label">Total Visits</div>
-                            </div>
-                            <div class="stat-item">
-                                <div class="stat-number" id="lightModeUses">
-                                    <div class="number-wrapper">
-                                        <div class="current-number">0</div>
-                                        <div class="next-number">0</div>
-                                    </div>
-                                </div>
-                                <div class="stat-label">Light Mode Uses</div>
-                            </div>
-                            <div class="stat-item">
-                                <div class="stat-number" id="darkModeUses">
-                                    <div class="number-wrapper">
-                                        <div class="current-number">0</div>
-                                        <div class="next-number">0</div>
-                                    </div>                                    
-                                </div>
-                                <div class="stat-label">Dark Mode Uses</div>
-                            </div>
-                            <div class="stat-item">
-                                <div class="stat-number" id="avgSessionTime">TBD</div>
-                                <div class="stat-label">Avg Session</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        <!-- Experience Section -->
+        <div class="section">
+          <h2 class="section-title">My Experience</h2>
+          <div class="row">
+            <div class="row-content">
+              <p>
+                <strong>5+ years</strong> with <strong>Skript</strong> (MC
+                servers)
+              </p>
             </div>
+          </div>
+          <div class="row">
+            <div class="row-content">
+              <p>
+                <strong>2+ years</strong> with <strong>C++</strong> (algorithms
+                & problem-solving)
+              </p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="row-content">
+              <p><strong>2+ years</strong> with <strong>Java</strong></p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="row-content">
+              <p>
+                <strong>1+ year</strong> in
+                <strong>Web Dev</strong> (HTML/CSS/JS + React)
+              </p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="row-content">
+              <p>
+                <strong>1+ year</strong> in <strong>Game Design</strong> (Godot
+                Engine)
+              </p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="row-content">
+              <p>
+                <strong>6+ months</strong> with
+                <strong>Discord bots</strong> (discord.js & Python)
+              </p>
+            </div>
+          </div>
         </div>
 
-        <!-- Cookie Banner -->
-        <div class="cookie-banner" id="cookieBanner">
-            <div class="cookie-particles" id="cookieParticles"></div>
-            <img class="cookie-icon" src="./images/cookie_light.png">
-            <div class="cookie-text">
-                Congratulations! You've earned a cookie! :)
+        <!-- Projects Section -->
+        <div class="section">
+          <h2 class="section-title">My Projects</h2>
+
+          <h3 class="subsection-title">MC Servers</h3>
+          <div class="row">
+            <div class="row-content">
+              <p>
+                <strong>Ez Mines</strong> – Developer – 1.2K+ Discord members.
+                <a href="https://discord.gg/V9wEqqRfuD">Discord Link</a>
+              </p>
             </div>
-            <div class="cookie-buttons">
-                <button class="cookie-btn accept" onclick="acceptCookie()">
-                    Accept Cookie 🍪
-                </button>
-                <button class="cookie-btn decline" onclick="declineCookie()">
-                    Decline
-                </button>
+          </div>
+          <div class="row">
+            <div class="row-content">
+              <p>
+                <strong>Grow a Crop</strong> – Co-Founder & Developer – 200+
+                Discord members.
+                <a href="https://discord.gg/growacrop">Discord Link</a>
+              </p>
             </div>
+          </div>
+          <div class="row">
+            <div class="row-content">
+              <p>
+                <strong>Fang SMP</strong> – Admin & Developer – 1K+ Discord
+                members, closed in 2024
+              </p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="row-content">
+              <p>
+                <strong>AFK Mining Tycoon</strong> – Developer – 300+ members,
+                closed
+              </p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="row-content">
+              <p>
+                <strong>Monsterify Tycoon</strong> – Owner – 100+ members in 2
+                weeks of launch (closed)
+              </p>
+            </div>
+          </div>
+
+          <h3 class="subsection-title">Game Dev</h3>
+          <div class="row">
+            <div class="row-content">
+              <p>
+                <strong>Top Down Game</strong> – Boss fights & rounds system
+                (WIP)
+              </p>
+            </div>
+          </div>
+
+          <h3 class="subsection-title">Discord Bots</h3>
+          <div class="row">
+            <div class="row-content">
+              <p>
+                <strong>Checkerify</strong> – Username checker (discontinued)
+              </p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="row-content">
+              <p>
+                <strong>Vexis Bot</strong> – Multipurpose bot (in development)
+              </p>
+            </div>
+          </div>
         </div>
 
-        <script>
-            let cachedElements = {};
+        <!-- Contact Section -->
+        <div class="section">
+          <h2 class="section-title">Contact Me</h2>
+          <div class="contact-row">
+            <img class="icon" src="./images/mail_white.png" alt="Mail" />
+            <p>
+              <strong>Email:</strong>
+              <a href="mailto:dragons11@hotmail.com">dragons11@hotmail.com</a>
+            </p>
+          </div>
+          <div class="contact-row">
+            <img class="icon" src="./images/discord.png" alt="Discord" />
+            <p><strong>Discord:</strong> @x8s</p>
+          </div>
+          <div class="contact-row">
+            <img class="icon" src="./images/github.png" alt="Github" />
+            <p>
+              <strong>GitHub:</strong>
+              <a href="https://github.com/dsa-123">github.com/dsa-123</a>
+            </p>
+          </div>
 
-            function cacheElements() {
-                cachedElements = {
-                    body: document.body,
-                    modeIcon: document.getElementById('mode-icon'),
-                    lightModeElement: document.getElementById('lightModeUses'),
-                    darkModeElement: document.getElementById('darkModeUses')
-                };
-            }
+          <!-- Statistics -->
+          <div class="stats-section">
+            <h3 class="stats-title">Website Statistics</h3>
+            <div class="stats-grid">
+              <div class="stat-item">
+                <div class="stat-number" id="totalVisits">
+                  <div class="number-display">
+                    <div class="number-wrapper">
+                      <div class="current-number">0</div>
+                      <div class="next-number">0</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="stat-label">Total Visits</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-number" id="lightModeUses">
+                  <div class="number-display">
+                    <div class="number-wrapper">
+                      <div class="current-number">0</div>
+                      <div class="next-number">0</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="stat-label">Light Mode Uses</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-number" id="darkModeUses">
+                  <div class="number-display">
+                    <div class="number-wrapper">
+                      <div class="current-number">0</div>
+                      <div class="next-number">0</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="stat-label">Dark Mode Uses</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-number" id="avgSessionTime">TBD</div>
+                <div class="stat-label">Avg Session</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
-            const config = {
-                status: 2, // 1 = online, 2 = dnd, 3 = taking a break, 4 = sleep mode
-                avgSessionTime: "TBD",
-                cookieAccepted: false
-            };
+    <!-- Cookie Banner -->
+    <div class="cookie-banner" id="cookieBanner">
+      <div class="cookie-particles" id="cookieParticles"></div>
+      <img class="cookie-icon" src="./images/cookie_light.png" />
+      <div class="cookie-text">Congratulations! You've earned a cookie! :)</div>
+      <div class="cookie-buttons">
+        <button class="cookie-btn accept" onclick="acceptCookie()">
+          Accept Cookie 🍪
+        </button>
+        <button class="cookie-btn decline" onclick="declineCookie()">
+          Decline
+        </button>
+      </div>
+    </div>
 
-            const statusConfig = {
-                1: { class: 'online', text: 'Available', color: '#43b883' },
-                2: { class: 'dnd', text: 'Do Not Disturb', color: '#f04747' },
-                3: { class: 'away', text: 'Taking a Break', color: '#faa61a' },
-                4: { class: 'sleep', text: 'Sleep Mode 💤', color: '#faa61a' }
-            };
+    <script>
+      let cachedElements = {};
 
-            async function initializeStatus() {
-                const response = await fetch('https://it-dsa.vercel.app/api/status');
-                const data = await response.json()
-                const statusIndicator = document.getElementById('statusIndicator');
-                const statusTooltip = document.getElementById('statusTooltip');
-                const currentStatus = statusConfig[data.status];
-                
-                if (statusIndicator && currentStatus) {
-                    statusIndicator.className = `status-indicator ${currentStatus.class}`;
-                }
-                if (statusTooltip && currentStatus) {
-                    statusTooltip.textContent = currentStatus.text;
-                }
-            }
+      function cacheElements() {
+        cachedElements = {
+          body: document.body,
+          modeIcon: document.getElementById("mode-icon"),
+          lightModeElement: document.getElementById("lightModeUses"),
+          darkModeElement: document.getElementById("darkModeUses"),
+        };
+      }
 
-            async function toggleDarkMode() {
-                cachedElements.body.classList.toggle('dark-mode');
-                let theme = '';
+      const config = {
+        status: 2, // 1 = online, 2 = dnd, 3 = taking a break, 4 = sleep mode
+        avgSessionTime: "TBD",
+        cookieAccepted: false,
+      };
 
-                if (cachedElements.body.classList.contains('dark-mode')) {
-                    cachedElements.modeIcon.textContent = '☀️ Light';
-                    config.darkModeUses++;
-                    theme = 'dark';
-                } else {
-                    cachedElements.modeIcon.textContent = '🌙 Dark';
-                    config.lightModeUses++;
-                    theme = 'light';
-                }
-                try{
-                    await fetch('https://it-dsa.vercel.app/api/theme', {
-                        method: 'POST',
-                        headers: { 'Content-Type':  'application/json'},
-                        body: JSON.stringify({ theme })
-                    });
+      const statusConfig = {
+        1: { class: "online", text: "Available", color: "#43b883" },
+        2: { class: "dnd", text: "Do Not Disturb", color: "#f04747" },
+        3: { class: "away", text: "Taking a Break", color: "#faa61a" },
+        4: { class: "sleep", text: "Sleep Mode 💤", color: "#faa61a" },
+      };
 
-                    const response = await fetch('https://it-dsa.vercel.app/api/theme');
-                    const stats = await response.json(); 
-                    updateThemeStats(stats);
-                } catch(error){
-                    console.error('Error updating theme.js:', error);
-                }
-            }
+      async function initializeStatus() {
+        const response = await fetch("https://it-dsa.vercel.app/api/status");
+        const data = await response.json();
+        const statusIndicator = document.getElementById("statusIndicator");
+        const statusTooltip = document.getElementById("statusTooltip");
+        const currentStatus = statusConfig[data.status];
 
-            function updateThemeStats(stats) {
-                animateNumber('darkModeUses', stats.data.dark);
-                animateNumber('lightModeUses', stats.data.light);
-            }
+        if (statusIndicator && currentStatus) {
+          statusIndicator.className = `status-indicator ${currentStatus.class}`;
+        }
+        if (statusTooltip && currentStatus) {
+          statusTooltip.textContent = currentStatus.text;
+        }
+      }
 
-            function createBackgroundParticles() {
-                const bgParticles = document.getElementById('bgParticles');
-                if (!bgParticles) return;
-                
-                const particleCount = 12;
-                
-                for (let i = 0; i < particleCount; i++) {
-                    const particle = document.createElement('div');
-                    particle.className = 'bg-particle';
-                    particle.style.left = Math.random() * 100 + '%';
-                    particle.style.top = Math.random() * 100 + '%';
-                    particle.style.animationDelay = Math.random() * 15 + 's';
-                    particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
-                    bgParticles.appendChild(particle);
-                }
-            }
+      async function toggleDarkMode() {
+        cachedElements.body.classList.toggle("dark-mode");
+        let theme = "";
 
-            function createCardParticles() {
-                const cardParticles = document.getElementById('cardParticles');
-                if (!cardParticles) return;
-                
-                const particleCount = 10;
-                for (let i = 0; i < particleCount; i++) {
-                    const particle = document.createElement('div');   
-                    particle.className = 'card-particle';
-                    particle.style.left = Math.random() * 100 + '%';
-                    particle.style.top = Math.random() * 100 + '%';
-                    particle.style.animationDelay = Math.random() * 8 + 's';
-                    particle.style.animationDuration = (Math.random() * 4 + 6) + 's';
-                    cardParticles.appendChild(particle);
-                }
-            }
+        if (cachedElements.body.classList.contains("dark-mode")) {
+          cachedElements.modeIcon.textContent = "☀️ Light";
+          config.darkModeUses++;
+          theme = "dark";
+        } else {
+          cachedElements.modeIcon.textContent = "🌙 Dark";
+          config.lightModeUses++;
+          theme = "light";
+        }
+        try {
+          await fetch("https://it-dsa.vercel.app/api/theme", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ theme }),
+          });
 
-            function createCookieParticles() {
-                const cookieParticles = document.getElementById('cookieParticles');
-                if (!cookieParticles) return;
-                
-                const particleCount = 4;
-                const cookieEmojis = ['🍪', '🥠', '🧈'];
-                
-                for (let i = 0; i < particleCount; i++) {
-                    const particle = document.createElement('div');
-                    particle.className = 'cookie-particle';
-                    particle.textContent = cookieEmojis[Math.floor(Math.random() * cookieEmojis.length)];
-                    particle.style.left = Math.random() * 90 + '%';
-                    particle.style.top = Math.random() * 80 + '%';
-                    particle.style.animationDelay = Math.random() * 2 + 's';
-                    particle.style.animationDuration = (Math.random() * 2 + 3) + 's';
-                    cookieParticles.appendChild(particle);
-                }
-            }
+          const response = await fetch("https://it-dsa.vercel.app/api/theme");
+          const stats = await response.json();
+          updateThemeStats(stats);
+        } catch (error) {
+          console.error("Error updating theme.js:", error);
+        }
+      }
 
-            function createCookieRain() {
-                const cookieRain = document.getElementById('cookieRain');
-                if (!cookieRain) return;
-                
-                const cookieCount = 20;
-                const cookieEmojis = ['🍪'];
-                
-                for (let i = 0; i < cookieCount; i++) {
-                    setTimeout(() => {
-                        const cookie = document.createElement('div');
-                        cookie.className = 'falling-cookie';
-                        cookie.textContent = cookieEmojis[0];
-                        cookie.style.left = Math.random() * 100 + '%';
-                        cookie.style.animationDuration = (Math.random() * 2 + 1) + 's';
-                        cookie.style.animationDelay = '0s';
-                        
-                        cookieRain.appendChild(cookie);
-                        
-                        const animationDuration = parseFloat(cookie.style.animationDuration) * 1000;
-                        setTimeout(() => {
-                            if (cookie.parentNode) {
-                                cookie.parentNode.removeChild(cookie);
-                            }
-                        }, animationDuration + 500);
-                    }, i * 100);
-                }
-            }
+      function updateThemeStats(stats) {
+        animateNumber("darkModeUses", stats.data.dark);
+        animateNumber("lightModeUses", stats.data.light);
+      }
 
-            function acceptCookie() {
-                config.cookieAccepted = true;
-                const banner = document.getElementById('cookieBanner');        
-                createCookieRain();
-                banner.classList.add('hidden');
-            }
+      function createBackgroundParticles() {
+        const bgParticles = document.getElementById("bgParticles");
+        if (!bgParticles) return;
 
-            function declineCookie() {
-                const banner = document.getElementById('cookieBanner');
-                banner.classList.add('hidden');
-                banner.style.display = 'none'                
-            }
+        const particleCount = 12;
 
-            function showCookieBanner() {
-                const banner = document.getElementById('cookieBanner');
-                if (banner) {
-                    setTimeout(() => {
-                        banner.style.display = 'block';
-                        createCookieParticles();
-                    }, 2000);
-                }
-            }
+        for (let i = 0; i < particleCount; i++) {
+          const particle = document.createElement("div");
+          particle.className = "bg-particle";
+          particle.style.left = Math.random() * 100 + "%";
+          particle.style.top = Math.random() * 100 + "%";
+          particle.style.animationDelay = Math.random() * 15 + "s";
+          particle.style.animationDuration = Math.random() * 10 + 10 + "s";
+          bgParticles.appendChild(particle);
+        }
+      }
 
-            function updateTime() {
-                const now = new Date();
-                
-                // muy time (GMT+3)
-                let myHour = now.getUTCHours() + 3;
-                let myMinute = now.getUTCMinutes();
-                if (myHour >= 24) myHour -= 24;
-                if (myHour < 0) myHour += 24;
-                
-                const myAmPm = myHour >= 12 ? 'PM' : 'AM';
-                const myDisplayHour = myHour === 0 ? 12 : (myHour > 12 ? myHour - 12 : myHour);
-                const myTimeStr = `${myDisplayHour}:${myMinute.toString().padStart(2, '0')} ${myAmPm}`;
-                document.getElementById('myTime').textContent = `GMT+3 (${myTimeStr})`;
-                
-                // user time
-                const userTimeStr = now.toLocaleTimeString('en-US', { 
-                    hour12: true,
-                    hour: 'numeric', 
-                    minute: '2-digit'
-                });
-                const userOffset = -now.getTimezoneOffset() / 60;
-                const offsetStr = userOffset >= 0 ? `+${userOffset}` : userOffset;
-                document.getElementById('userTime').textContent = `GMT${offsetStr} (${userTimeStr})`;
-            }
+      function createCardParticles() {
+        const cardParticles = document.getElementById("cardParticles");
+        if (!cardParticles) return;
 
-            async function updateAllStats(){
-                // total views
-                try {
-                    let response = await fetch('https://it-dsa.vercel.app/api/visits');
-                    let data = await response.json();
-                    animateNumber('totalVisits', data.count)
-                } catch (error) {
-                    console.error('Error fetching visit count:', error);
-                    document.getElementById('totalVisits').textContent = 'Error';
-                }
+        const particleCount = 10;
+        for (let i = 0; i < particleCount; i++) {
+          const particle = document.createElement("div");
+          particle.className = "card-particle";
+          particle.style.left = Math.random() * 100 + "%";
+          particle.style.top = Math.random() * 100 + "%";
+          particle.style.animationDelay = Math.random() * 8 + "s";
+          particle.style.animationDuration = Math.random() * 4 + 6 + "s";
+          cardParticles.appendChild(particle);
+        }
+      }
 
-                // themes
-                try {
-                    let response = await fetch('https://it-dsa.vercel.app/api/theme');
-                    let data = await response.json();
-                    updateThemeStats(data);
-                } catch(error){
-                    console.error('Error fetching themes.js:', error)
-                    document.getElementById('darkModeUses').textContent = 'Error';
-                    document.getElementById('lightModeUses').textContent = 'Error';
-                }
-                
-                // session WIP
-                
-                // try{
-                //     let response = await fetch('https://it-dsa.vercel.app/api/session');
-                //     let data = await response.json();
-                //     document.getElementById('avgSessionTime') = data.averageSessionTime;
-                // } catch(error){
-                //     console.error('Error fetching sessions stat: ', error);
-                // }
+      function createCookieParticles() {
+        const cookieParticles = document.getElementById("cookieParticles");
+        if (!cookieParticles) return;
 
-            }
+        const particleCount = 4;
+        const cookieEmojis = ["🍪", "🥠", "🧈"];
 
-            function animateNumber(elementId, newNumber){
-                const element = document.getElementById(elementId);
-                const wrapper = element.querySelector('.number-wrapper');
-                const currentNum = element.querySelector('.current-number');
-                const nextNum = element.querySelector('.next-number');
+        for (let i = 0; i < particleCount; i++) {
+          const particle = document.createElement("div");
+          particle.className = "cookie-particle";
+          particle.textContent =
+            cookieEmojis[Math.floor(Math.random() * cookieEmojis.length)];
+          particle.style.left = Math.random() * 90 + "%";
+          particle.style.top = Math.random() * 80 + "%";
+          particle.style.animationDelay = Math.random() * 2 + "s";
+          particle.style.animationDuration = Math.random() * 2 + 3 + "s";
+          cookieParticles.appendChild(particle);
+        }
+      }
 
-                nextNum.textContent = newNumber;
-                wrapper.classList.remove('slide-up');
+      function createCookieRain() {
+        const cookieRain = document.getElementById("cookieRain");
+        if (!cookieRain) return;
 
-                setTimeout(() => {
-                    wrapper.classList.add('slide-up');
-                }, 10)
+        const cookieCount = 20;
+        const cookieEmojis = ["🍪"];
 
-                setTimeout(() => {
-                    currentNum.textContent = newNumber;
-                    wrapper.classList.remove('slide-up');
-                }, 600)
-            }
+        for (let i = 0; i < cookieCount; i++) {
+          setTimeout(() => {
+            const cookie = document.createElement("div");
+            cookie.className = "falling-cookie";
+            cookie.textContent = cookieEmojis[0];
+            cookie.style.left = Math.random() * 100 + "%";
+            cookie.style.animationDuration = Math.random() * 2 + 1 + "s";
+            cookie.style.animationDelay = "0s";
 
-            document.addEventListener('DOMContentLoaded', async () => {
-                try{
-                    await fetch('https://it-dsa.vercel.app/api/visits', {
-                        method: 'POST'
-                    });
-                } catch(error){
-                    console.error('Error updating visits.js:', error);
-                }
-                updateAllStats()
-            });
+            cookieRain.appendChild(cookie);
 
-            window.addEventListener('load', function() {                
-                cacheElements();
-                createBackgroundParticles();
-                createCardParticles();
-                initializeStatus();
-                showCookieBanner();
-                
-                toggleDarkMode(); // default dark mode
+            const animationDuration =
+              parseFloat(cookie.style.animationDuration) * 1000;
+            setTimeout(() => {
+              if (cookie.parentNode) {
+                cookie.parentNode.removeChild(cookie);
+              }
+            }, animationDuration + 500);
+          }, i * 100);
+        }
+      }
 
-                let dots = '';
-                const interval = setInterval(() => {
-                    dots += '.';
-                    if (dots.length > 3) dots = '';
-                    const text = `Updating${dots}`.padEnd(11, ' ');
-                    document.getElementById('myTime').textContent = text;
-                    document.getElementById('userTime').textContent = text;                    
-                }, 300);
+      function acceptCookie() {
+        config.cookieAccepted = true;
+        const banner = document.getElementById("cookieBanner");
+        createCookieRain();
+        banner.classList.add("hidden");
+      }
 
-                const interval_liveStatsUpdate = setInterval(() => {
-                    updateAllStats();
-                }, 1000)
+      function declineCookie() {
+        const banner = document.getElementById("cookieBanner");
+        banner.classList.add("hidden");
+        banner.style.display = "none";
+      }
 
-                setTimeout(() => {
-                    clearInterval(interval)
-                    updateTime()
-                    setInterval(updateTime, 60000)
-                }, 5000)
-            });
-        </script>
-        <script>
-        window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
-        </script>
-        <script defer src="/_vercel/insights/script.js"></script>
-    </body>
+      function showCookieBanner() {
+        const banner = document.getElementById("cookieBanner");
+        if (banner) {
+          setTimeout(() => {
+            banner.style.display = "block";
+            createCookieParticles();
+          }, 2000);
+        }
+      }
+
+      function updateTime() {
+        const now = new Date();
+
+        // muy time (GMT+3)
+        let myHour = now.getUTCHours() + 3;
+        let myMinute = now.getUTCMinutes();
+        if (myHour >= 24) myHour -= 24;
+        if (myHour < 0) myHour += 24;
+
+        const myAmPm = myHour >= 12 ? "PM" : "AM";
+        const myDisplayHour =
+          myHour === 0 ? 12 : myHour > 12 ? myHour - 12 : myHour;
+        const myTimeStr = `${myDisplayHour}:${myMinute
+          .toString()
+          .padStart(2, "0")} ${myAmPm}`;
+        document.getElementById("myTime").textContent = `GMT+3 (${myTimeStr})`;
+
+        // user time
+        const userTimeStr = now.toLocaleTimeString("en-US", {
+          hour12: true,
+          hour: "numeric",
+          minute: "2-digit",
+        });
+        const userOffset = -now.getTimezoneOffset() / 60;
+        const offsetStr = userOffset >= 0 ? `+${userOffset}` : userOffset;
+        document.getElementById(
+          "userTime"
+        ).textContent = `GMT${offsetStr} (${userTimeStr})`;
+      }
+
+      async function updateAllStats() {
+        // total views
+        try {
+          let response = await fetch("https://it-dsa.vercel.app/api/visits");
+          let data = await response.json();
+          animateNumber("totalVisits", data.count);
+        } catch (error) {
+          console.error("Error fetching visit count:", error);
+          document.getElementById("totalVisits").textContent = "Error";
+        }
+
+        // themes
+        try {
+          let response = await fetch("https://it-dsa.vercel.app/api/theme");
+          let data = await response.json();
+          updateThemeStats(data);
+        } catch (error) {
+          console.error("Error fetching themes.js:", error);
+          document.getElementById("darkModeUses").textContent = "Error";
+          document.getElementById("lightModeUses").textContent = "Error";
+        }
+
+        // session WIP
+
+        // try{
+        //     let response = await fetch('https://it-dsa.vercel.app/api/session');
+        //     let data = await response.json();
+        //     document.getElementById('avgSessionTime') = data.averageSessionTime;
+        // } catch(error){
+        //     console.error('Error fetching sessions stat: ', error);
+        // }
+      }
+
+      function animateNumber(elementId, newNumber) {
+        const element = document.getElementById(elementId);
+        const wrapper = element.querySelector(".number-wrapper");
+        const currentNum = element.querySelector(".current-number");
+        const nextNum = element.querySelector(".next-number");
+
+        nextNum.textContent = newNumber;
+        wrapper.classList.remove("slide-up");
+
+        setTimeout(() => {
+          wrapper.classList.add("slide-up");
+        }, 10);
+
+        setTimeout(() => {
+          currentNum.textContent = newNumber;
+          wrapper.classList.remove("slide-up");
+        }, 600);
+      }
+
+      document.addEventListener("DOMContentLoaded", async () => {
+        try {
+          await fetch("https://it-dsa.vercel.app/api/visits", {
+            method: "POST",
+          });
+        } catch (error) {
+          console.error("Error updating visits.js:", error);
+        }
+        updateAllStats();
+      });
+
+      window.addEventListener("load", function () {
+        cacheElements();
+        createBackgroundParticles();
+        createCardParticles();
+        initializeStatus();
+        showCookieBanner();
+
+        toggleDarkMode(); // default dark mode
+
+        let dots = "";
+        const interval = setInterval(() => {
+          dots += ".";
+          if (dots.length > 3) dots = "";
+          const text = `Updating${dots}`.padEnd(11, " ");
+          document.getElementById("myTime").textContent = text;
+          document.getElementById("userTime").textContent = text;
+        }, 300);
+
+        const interval_liveStatsUpdate = setInterval(() => {
+          updateAllStats();
+        }, 1000);
+
+        setTimeout(() => {
+          clearInterval(interval);
+          updateTime();
+          setInterval(updateTime, 60000);
+        }, 5000);
+      });
+    </script>
+    <script>
+      window.va =
+        window.va ||
+        function () {
+          (window.vaq = window.vaq || []).push(arguments);
+        };
+    </script>
+    <script defer src="/_vercel/insights/script.js"></script>
+  </body>
 </html>
