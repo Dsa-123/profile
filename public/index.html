@@ -493,6 +493,7 @@
         try {
           let response = await fetch("https://it-dsa.vercel.app/api/theme");
           let data = await response.json();
+          console.log(data)
           updateThemeStats(data);
         } catch (error) {
           console.error("Error fetching themes.js:", error);
@@ -560,9 +561,7 @@
           document.getElementById("userTime").textContent = text;
         }, 300);
 
-        const interval_liveStatsUpdate = setInterval(() => {
-          updateAllStats();
-        }, 1000);
+        const interval_liveStatsUpdate = setInterval(updateAllStats, 10000);
 
         setTimeout(() => {
           clearInterval(interval);
