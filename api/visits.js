@@ -1,7 +1,7 @@
 import { getRedisClient, handleRedisError } from '../lib/redis.js';
 
 export default async function handler(req, res) {
-  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Origin', 'https://it-dsa.vercel.app');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
@@ -9,7 +9,16 @@ export default async function handler(req, res) {
     return res.status(200).end();
   }
 
-  try {
+  else if(req.method === 'POST'){
+    await redis.set('visits', 70);
+    await redis.incr('visits');
+
+    return res.status(200).json({
+      sucess: true
+    });
+  }
+  else{  
+    try {
     const redis = await getRedisClient();
     
     const count = await redis.incr('visits');
@@ -21,7 +30,8 @@ export default async function handler(req, res) {
       count: count
     });
     
-  } catch (error) {
-    return handleRedisError(error, res);
+    } catch (error) {
+      return handleRedisError(error, res);
+    }
   }
 }
