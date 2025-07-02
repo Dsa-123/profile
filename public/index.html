@@ -517,10 +517,10 @@
         const numberDisplay = element.querySelector('.number-display');
         const currentNum = numberDisplay.querySelector('.current-number');
 
-        if (parseInt(currentNum.textContent) == newNumber){
-            return
+        if (currentNum.textContent.toString() === newNumber.toString()){
+            return;
         }
-        
+
         const wrapper = numberDisplay.querySelector('.number-wrapper');
         const nextNum = numberDisplay.querySelector('.next-number');
 
@@ -566,7 +566,7 @@
           document.getElementById("userTime").textContent = text;
         }, 300);
 
-        const interval_liveStatsUpdate = setInterval(updateAllStats, 10000);
+        const interval_liveStatsUpdate = setInterval(updateAllStats, 1000);
 
         setTimeout(() => {
           clearInterval(interval);
