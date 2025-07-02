@@ -513,9 +513,10 @@
 
       function animateNumber(elementId, newNumber) {
         const element = document.getElementById(elementId);
-        const wrapper = element.querySelector(".number-wrapper");
-        const currentNum = element.querySelector(".current-number");
-        const nextNum = element.querySelector(".next-number");
+        const numberDisplay = element.querySelector('.number-display');
+        const wrapper = numberDisplay.querySelector(".number-wrapper");
+        const currentNum = numberDisplay.querySelector(".current-number");
+        const nextNum = numberDisplay.querySelector(".next-number");
 
         nextNum.textContent = newNumber;
         wrapper.classList.remove("slide-up");
