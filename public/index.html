@@ -289,12 +289,8 @@
             }
 
             function updateThemeStats(stats) {
-                if (cachedElements.lightModeElement) {
-                    cachedElements.lightModeElement.textContent = stats.data.light.toLocaleString();
-                }
-                if (cachedElements.darkModeElement) {
-                    cachedElements.darkModeElement.textContent = stats.data.dark.toLocaleString();
-                }
+                animateNumber('darkModeUses', stats.data.dark);
+                animateNumber('lightModeUses', stats.data.light);
             }
 
             function createBackgroundParticles() {
@@ -425,6 +421,40 @@
                 document.getElementById('userTime').textContent = `GMT${offsetStr} (${userTimeStr})`;
             }
 
+            async function updateAllStats(){
+                // total views
+                try {
+                    let response = await fetch('https://it-dsa.vercel.app/api/visits');
+                    let data = await response.json();
+                    animateNumber('totalVisits', data.count)
+                } catch (error) {
+                    console.error('Error fetching visit count:', error);
+                    document.getElementById('totalVisits').textContent = 'Error';
+                }
+
+                // themes
+                try {
+                    let response = await fetch('https://it-dsa.vercel.app/api/theme');
+                    let data = await response.json();
+                    updateThemeStats(data);
+                } catch(error){
+                    console.error('Error fetching themes.js:', error)
+                    document.getElementById('darkModeUses').textContent = 'Error';
+                    document.getElementById('lightModeUses').textContent = 'Error';
+                }
+                
+                // session WIP
+                
+                // try{
+                //     let response = await fetch('https://it-dsa.vercel.app/api/session');
+                //     let data = await response.json();
+                //     document.getElementById('avgSessionTime') = data.averageSessionTime;
+                // } catch(error){
+                //     console.error('Error fetching sessions stat: ', error);
+                // }
+
+            }
+
             function animateNumber(elementId, newNumber){
                 const element = document.getElementById(elementId);
                 const wrapper = element.querySelector('.number-wrapper');
@@ -445,32 +475,7 @@
             }
 
             document.addEventListener('DOMContentLoaded', async () => {
-                try {
-                    let response = await fetch('https://it-dsa.vercel.app/api/visits');
-                    let data = await response.json();
-                    document.getElementById('totalVisits').textContent = data.count;
-                } catch (error) {
-                    console.error('Error fetching visit count:', error);
-                    document.getElementById('totalVisits').textContent = 'Error';
-                }
-                
-
-                try {
-                    let response = await fetch('https://it-dsa.vercel.app/api/theme');
-                    let data = await response.json();
-                    document.getElementById('lightModeUses').textContent = data.light;
-                    animateNumber('darkModeUses', data.dark);
-                } catch (error){
-                    console.error('Error fetching theme count:', error);
-                }
-
-                try{
-                    let response = await fetch('https://it-dsa.vercel.app/api/session');
-                    let data = await response.json();
-                    document.getElementById('avgSessionTime') = data.averageSessionTime;
-                } catch(error){
-                    console.error('Error fetching sessions stat: ', error);
-                }
+                updateAllStats()
             });
 
             window.addEventListener('load', function() {                
@@ -490,6 +495,10 @@
                     document.getElementById('myTime').textContent = text;
                     document.getElementById('userTime').textContent = text;                    
                 }, 300);
+
+                const interval_liveStatsUpdate = setInterval(() => {
+                    updateAllStats();
+                }, 100)
 
                 setTimeout(() => {
                     clearInterval(interval)
