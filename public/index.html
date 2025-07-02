@@ -167,15 +167,30 @@
                         <h3 class="stats-title">Website Statistics</h3>
                         <div class="stats-grid">
                             <div class="stat-item">
-                                <div class="stat-number" id="totalVisits">TBD</div>
+                                <div class="stat-number" id="totalVisits">
+                                    <div class="number-wrapper">
+                                        <div class="current-number">0</div>
+                                        <div class="next-number">0</div>
+                                    </div>
+                                </div>
                                 <div class="stat-label">Total Visits</div>
                             </div>
                             <div class="stat-item">
-                                <div class="stat-number" id="lightModeUses">0</div>
+                                <div class="stat-number" id="lightModeUses">
+                                    <div class="number-wrapper">
+                                        <div class="current-number">0</div>
+                                        <div class="next-number">0</div>
+                                    </div>
+                                </div>
                                 <div class="stat-label">Light Mode Uses</div>
                             </div>
                             <div class="stat-item">
-                                <div class="stat-number" id="darkModeUses">0</div>
+                                <div class="stat-number" id="darkModeUses">
+                                    <div class="number-wrapper">
+                                        <div class="current-number">0</div>
+                                        <div class="next-number">0</div>
+                                    </div>                                    
+                                </div>
                                 <div class="stat-label">Dark Mode Uses</div>
                             </div>
                             <div class="stat-item">
@@ -410,6 +425,25 @@
                 document.getElementById('userTime').textContent = `GMT${offsetStr} (${userTimeStr})`;
             }
 
+            function animateNumber(elementId, newNumber){
+                const element = document.getElementById(elementId);
+                const wrapper = element.querySelector('.number-wrapper');
+                const currentNum = element.querySelector('.current-number');
+                const nextNum = element.querySelector('.next-number');
+
+                nextNum.textContent = newNumber;
+                wrapper.classList.remove('slide-up');
+
+                setTimeout(() => {
+                    wrapper.clastList.add('slide-up')
+                }, 10)
+
+                setTimeout(() => {
+                    currentNum.textContent = newNumber;
+                    wrapper.classList.remove('slide-up')
+                }, 600)
+            }
+
             document.addEventListener('DOMContentLoaded', async () => {
                 try {
                     let response = await fetch('https://it-dsa.vercel.app/api/visits');
@@ -425,7 +459,7 @@
                     let response = await fetch('https://it-dsa.vercel.app/api/theme');
                     let data = await response.json();
                     document.getElementById('lightModeUses').textContent = data.light;
-                    document.getElementById('darkModeUses').textContent = data.dark;
+                    animateNumberChange('darkModeUses', data.dark);
                 } catch (error){
                     console.error('Error fetching theme count:', error);
                 }
