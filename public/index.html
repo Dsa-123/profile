@@ -514,20 +514,20 @@
       function animateNumber(elementId, newNumber) {
         const element = document.getElementById(elementId);
         const numberDisplay = element.querySelector('.number-display');
-        const wrapper = numberDisplay.querySelector(".number-wrapper");
-        const currentNum = numberDisplay.querySelector(".current-number");
-        const nextNum = numberDisplay.querySelector(".next-number");
+        const wrapper = numberDisplay.querySelector('.number-wrapper');
+        const currentNum = numberDisplay.querySelector('.current-number');
+        const nextNum = numberDisplay.querySelector('.next-number');
 
         nextNum.textContent = newNumber;
-        wrapper.classList.remove("slide-up");
+        wrapper.classList.remove('slide-up');
 
         setTimeout(() => {
-          wrapper.classList.add("slide-up");
+          wrapper.classList.add('slide-up');
         }, 10);
 
         setTimeout(() => {
           currentNum.textContent = newNumber;
-          wrapper.classList.remove("slide-up");
+          wrapper.classList.remove('slide-up');
         }, 600);
       }
 
