@@ -21,7 +21,7 @@ export default async function handler(req, res) {
     try {
     const redis = await getRedisClient();
     
-    const count = await redis.incr('visits');
+    const count = await redis.get('visits');
     
     console.log(`Visit count: ${count}`);
     
