@@ -347,7 +347,7 @@
         const bgParticles = document.getElementById("bgParticles");
         if (!bgParticles) return;
 
-        const particleCount = 12;
+        const particleCount = 30;
 
         for (let i = 0; i < particleCount; i++) {
           const particle = document.createElement("div");
@@ -364,7 +364,7 @@
         const cardParticles = document.getElementById("cardParticles");
         if (!cardParticles) return;
 
-        const particleCount = 10;
+        const particleCount = 30;
         for (let i = 0; i < particleCount; i++) {
           const particle = document.createElement("div");
           particle.className = "card-particle";
@@ -451,7 +451,7 @@
       function updateTime() {
         const now = new Date();
 
-        // muy time (GMT+3)
+        // my time (GMT+3)
         let myHour = now.getUTCHours() + 3;
         let myMinute = now.getUTCMinutes();
         if (myHour >= 24) myHour -= 24;
@@ -524,7 +524,6 @@
         const nextNum = numberDisplay.querySelector('.next-number');
 
         nextNum.textContent = newNumber;
-        // currentNum.textContent = newNumber;
         wrapper.classList.remove('slide-up');
 
         setTimeout(() => {
