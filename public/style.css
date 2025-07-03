@@ -35,7 +35,7 @@ body.dark-mode {
     position: absolute;
     width: 4px;
     height: 4px;
-    background: rgba(142, 85, 85, 0.2);
+    background: rgb(142, 85, 85);
     border-radius: 50%;
     animation: bgFloat 6s ease-in-out infinite;
 }
