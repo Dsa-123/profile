@@ -37,7 +37,7 @@ body.dark-mode {
     height: 4px;
     background: rgba(255, 255, 255, 0.3);
     border-radius: 50%;
-    animation: bgFloat 12s ease-in-out infinite;
+    animation: bgFloat 5s ease-in-out infinite;
 }
 
 body.dark-mode .bg-particle {
