@@ -35,9 +35,9 @@ body.dark-mode {
     position: absolute;
     width: 4px;
     height: 4px;
-    background: rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.1);
     border-radius: 50%;
-    animation: bgFloat 1s ease-in-out infinite;
+    animation: bgFloat 6s ease-in-out infinite;
 }
 
 body.dark-mode .bg-particle {
