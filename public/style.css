@@ -37,11 +37,11 @@ body.dark-mode {
     height: 4px;
     background: rgba(255, 255, 255, 0.3);
     border-radius: 50%;
-    animation: bgFloat 15s ease-in-out infinite;
+    animation: bgFloat 10s ease-in-out infinite;
 }
 
 body.dark-mode .bg-particle {
-    background: rgba(157, 78, 221, 0.4);
+    background: rgba(157, 78, 221, 0.5);
 }
 
 .clouds {
@@ -131,19 +131,19 @@ body.dark-mode .cloud {
 @keyframes bgFloat {
     0%, 100% {
         transform: translateY(0px) translateX(0px) rotate(0deg);
-        opacity: 0.3;
+        opacity: 0.5;
     }
     25% {
         transform: translateY(-100px) translateX(50px) rotate(90deg);
-        opacity: 0.8;
+        opacity: 0.9;
     }
     50% {
         transform: translateY(-50px) translateX(100px) rotate(180deg);
-        opacity: 0.5;
+        opacity: 0.7;
     }
     75% {
         transform: translateY(-150px) translateX(25px) rotate(270deg);
-        opacity: 0.7;
+        opacity: 0.85;
     }
 }
 
